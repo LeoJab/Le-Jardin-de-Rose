@@ -1,0 +1,17 @@
+// UTILISATEUR
+SELECT * FROM Utilisateur WHERE Id_Utilisateur = :id
+
+// PRODUIT
+SELECT * From Produit
+SELECT * FROM Produit WHERE Visible IS
+SELECT * FROM Produit WHERE Nom LIKE 
+
+// DEVIS
+
+// CONTACT
+
+// TAG
+
+// CATEGORIE
+
+// QUESTION FREQUENTE
