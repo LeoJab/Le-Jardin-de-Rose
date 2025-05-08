@@ -8,9 +8,10 @@ use Application\Lib\Database\DatabaseConnection;
 
 class QuestionFrequente
 {
-    public string $identifier;
+    public string $id;
     public string $question;
-    public string $response;
+    public string $reponse;
+    public string $visible;
 }
 
 class QuestionFrequenteRepository
@@ -21,9 +22,21 @@ class QuestionFrequenteRepository
             "SELECT * FROM questionFrequente LIMIT $limit"
         );
         $statement->execute();
+
+        $questionsFrequentes = [];
+        while (($row = $statement->fetch()))
+        {
+            $questionFrequente = new QuestionFrequente;
+            $questionFrequente->id = $row['idQuestionFrequente'];
+            $questionFrequente->question = $row['question'];
+            $questionFrequente->reponse = $row['reponse'];
+            $questionFrequente->visible = $row['visible'];
+
+            $questionsFrequentes[] = $questionFrequente;
+        }
+
+        return $questionsFrequentes;
     }
-
-
 }
 
 ?>
