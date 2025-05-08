@@ -14,7 +14,7 @@ class Accueil
     {
         $produitRepository = new ProduitRepository();
         $produitRepository->connection = new DatabaseConnection;
-        $products = $produitRepository->getProducts();
+        $products = $produitRepository->getProductsLimit(10);
 
         require('templates/accueil.php');
     }

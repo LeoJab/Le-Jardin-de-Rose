@@ -42,6 +42,30 @@ class ProduitRepository
 
         return $products;
     }
+
+    public function getProductsLimit(int $limit): Array 
+    {
+        $statement = $this->connection->getConnection()->prepare(
+            "SELECT * FROM Produit LIMIT $limit"
+        );
+        $statement->execute();
+
+        $products = [];
+        while (($row = $statement->fetch())) {
+            $product = new Product;
+            $product->identifier = $row['idProduit'];
+            $product->name = $row['nom'];
+            $product->description = $row['description'];
+            $product->picture = $row['photo'];
+            $product->addDate = $row['dateAjout'];
+            $product->visibility = $row['visible'];
+            $product->categorie = $row['idCategorie'];
+
+            $products[] = $product;
+        }
+
+        return $products;
+    }
 }
 
 ?>
