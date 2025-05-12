@@ -16,7 +16,7 @@ class Accueil
     {
         $produitRepository = new ProduitRepository();
         $produitRepository->connection = new DatabaseConnection;
-        $products = $produitRepository->getProductsLimit(10);
+        $produits = $produitRepository->getProduitsLimit(10);
 
         $questionFrequenteRepository = new QuestionFrequenteRepository();
         $questionFrequenteRepository->connection = new DatabaseConnection;

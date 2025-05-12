@@ -6,7 +6,7 @@ require_once('src/lib/database.php');
 
 use Application\Lib\Database\DatabaseConnection;
 
-class Product 
+class Produit 
 {
     public string $identifier;
     public string $name;
@@ -19,52 +19,52 @@ class Product
 
 class ProduitRepository
 {
-    public function getProducts(): Array 
+    public function getproduits(): Array 
     {
         $statement = $this->connection->getConnection()->prepare(
             "SELECT * FROM Produit"
         );
         $statement->execute();
 
-        $products = [];
+        $produits = [];
         while (($row = $statement->fetch())) {
-            $product = new Product;
-            $product->identifier = $row['idProduit'];
-            $product->name = $row['nom'];
-            $product->description = $row['description'];
-            $product->picture = $row['photo'];
-            $product->addDate = $row['dateAjout'];
-            $product->visibility = $row['visible'];
-            $product->categorie = $row['idCategorie'];
+            $produit = new Produit;
+            $produit->id = $row['idProduit'];
+            $produit->nom = $row['nom'];
+            $produit->description = $row['description'];
+            $produit->photo = $row['photo'];
+            $produit->dateAjout = $row['dateAjout'];
+            $produit->visibile = $row['visible'];
+            $produit->categorie = $row['idCategorie'];
 
-            $products[] = $product;
+            $produits[] = $produit;
         }
 
-        return $products;
+        return $produits;
     }
 
-    public function getProductsLimit(int $limit): Array 
+    public function getproduitsLimit(int $limit): Array 
     {
         $statement = $this->connection->getConnection()->prepare(
             "SELECT * FROM Produit LIMIT $limit"
         );
         $statement->execute();
 
-        $products = [];
+        $produits = [];
         while (($row = $statement->fetch())) {
-            $product = new Product;
-            $product->identifier = $row['idProduit'];
-            $product->name = $row['nom'];
-            $product->description = $row['description'];
-            $product->picture = $row['photo'];
-            $product->addDate = $row['dateAjout'];
-            $product->visibility = $row['visible'];
-            $product->categorie = $row['idCategorie'];
+            $produit = new produit;
+            $produit->id = $row['idProduit'];
+            $produit->nom = $row['nom'];
+            $produit->description = $row['description'];
+            $produit->photo = $row['photo'];
+            $produit->dateAjout = $row['dateAjout'];
+            $produit->visibile = $row['visible'];
+            $produit->categorie = $row['idCategorie'];
 
-            $products[] = $product;
+            $produits[] = $produit;
         }
 
-        return $products;
+        return $produits;
     }
 }
 

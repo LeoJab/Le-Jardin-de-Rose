@@ -19,7 +19,7 @@ class QuestionFrequenteRepository
     public function getQuestionsFrequentesLimit(int $limit): Array
     {
         $statement = $this->connection->getConnection()->prepare(
-            "SELECT * FROM questionFrequente LIMIT $limit"
+            "SELECT * FROM questionFrequente WHERE Visible IS NOT FALSE LIMIT $limit"
         );
         $statement->execute();
 

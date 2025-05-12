@@ -18,7 +18,7 @@
         </p>
         <p>
             Mon style se caractérise par un mélange d’influences : des compositions modernes et épurées aux arrangements plus classiques et romantiques, toujours en accord avec les tendances 
-            actuelles. Je privilégie les fleurs de saison et travaille étroitement avec des producteurs locaux de la région Auvergne-Rhône-Alpes pour garantir fraîcheur et qualité. Chaque bouquet 
+            actuelles. Je privilégie les fleurs de saison et travaille étroitement avec des produiteurs locaux de la région Auvergne-Rhône-Alpes pour garantir fraîcheur et qualité. Chaque bouquet 
             est conçu avec soin, en tenant compte des souhaits de mes clients et de l'émotion que je veux transmettre.
         </p>
         <p>
@@ -32,11 +32,11 @@
 <div class="text-center">
     <h2>Nos créations</h2>
     <div class="row justify-content-center">
-        <?php foreach($products as $product) { ?>
+        <?php foreach($produits as $produit) { ?>
             <div class="col-4">
-                <img class="img-fluid" src="<?= $product->picture; ?>" alt="Photo du produit">
+                <img class="img-fluid" src="<?= $produit->photo; ?>" alt="Photo du produit">
                 <p>
-                    <?= $product->name; ?>
+                    <?= $produit->nom; ?>
                 </p>
             </div>
         <?php } ?>
@@ -58,6 +58,8 @@
         </div>
     <?php } ?>
 </div>
+
+<img src="#" alt="Carte du magasin">
 
 <?php $content = ob_get_clean(); ?>
 
