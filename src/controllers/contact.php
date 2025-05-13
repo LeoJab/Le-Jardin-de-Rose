@@ -2,7 +2,7 @@
 
 namespace Application\Controllers\Contact;
 
-require_once('src/lib/database');
+require_once('src/lib/database.php');
 require_once('src/model/questionFrequente.php');
 
 use Application\Lib\Database\DatabaseConnection;
@@ -12,9 +12,9 @@ class Contact
 {
     public function execute()
     {
-        $questionsFrequentes = new QuestionFrequenteRepository;
-        $questionsFrequentes->connexion = new DababaseConnection;
-        $questions = $questionsFrequentes->getQuestionsFrequentesLimit(5);
+        $questionFrequenteRepository = new QuestionFrequenteRepository();
+        $questionFrequenteRepository->connection = new DatabaseConnection;
+        $questionsFrequentes = $questionFrequenteRepository->getQuestionsFrequentesLimit(5);
 
         require('templates/contact.php');
     }
