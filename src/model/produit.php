@@ -8,18 +8,18 @@ use Application\Lib\Database\DatabaseConnection;
 
 class Produit 
 {
-    public string $identifier;
-    public string $name;
+    public string $id;
+    public string $nom;
     public string $description;
-    public string $picture;
-    public string $addDate;
-    public string $visibility;
+    public string $photo;
+    public string $dateAjout;
+    public string $visible;
     public string $categorie;
 }
 
 class ProduitRepository
 {
-    public function getproduits(): Array 
+    public function getProduits(): Array 
     {
         $statement = $this->connection->getConnection()->prepare(
             "SELECT * FROM Produit"
@@ -34,7 +34,7 @@ class ProduitRepository
             $produit->description = $row['description'];
             $produit->photo = $row['photo'];
             $produit->dateAjout = $row['dateAjout'];
-            $produit->visibile = $row['visible'];
+            $produit->visible = $row['visible'];
             $produit->categorie = $row['idCategorie'];
 
             $produits[] = $produit;
@@ -43,7 +43,7 @@ class ProduitRepository
         return $produits;
     }
 
-    public function getproduitsLimit(int $limit): Array 
+    public function getProduitsLimit(int $limit): Array 
     {
         $statement = $this->connection->getConnection()->prepare(
             "SELECT * FROM Produit LIMIT $limit"
@@ -58,13 +58,32 @@ class ProduitRepository
             $produit->description = $row['description'];
             $produit->photo = $row['photo'];
             $produit->dateAjout = $row['dateAjout'];
-            $produit->visibile = $row['visible'];
+            $produit->visible = $row['visible'];
             $produit->categorie = $row['idCategorie'];
 
             $produits[] = $produit;
         }
 
         return $produits;
+    }
+
+        public function getProduitId(int $idProduit): Produit 
+    {
+        $statement = $this->connection->getConnection()->prepare(
+            "SELECT * FROM Produit WHERE produit.idProduit = $idProduit"
+        );
+        $statement->execute();
+
+        $produit = new produit;
+        $produit->id = $row['idProduit'];
+        $produit->nom = $row['nom'];
+        $produit->description = $row['description'];
+        $produit->photo = $row['photo'];
+        $produit->dateAjout = $row['dateAjout'];
+        $produit->visibile = $row['visible'];
+        $produit->categorie = $row['idCategorie'];
+
+        return $produit;
     }
 }
 
