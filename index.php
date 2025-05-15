@@ -3,10 +3,12 @@
 require_once('src/controllers/accueil.php');
 require_once('src/controllers/produits.php');
 require_once('src/controllers/contact.php');
+require_once('src/controllers/produit.php');
 
 use Application\Controllers\Accueil\Accueil;
 use Application\Controllers\Produits\Produits;
 use Application\Controllers\Contact\Contact;
+use Application\Controllers\Produit\Produit;
 
 try {
     if (isset($_GET['action']) && $_GET['action'] !== '') {
@@ -14,6 +16,14 @@ try {
             (new Produits())->execute();
         } else if($_GET["action"] === "contact") {
             (new Contact())->execute();
+        } else if($_GET["action"] === "produit") {
+            if (isset($_GET['idProduit']) && $_GET['idProduit'] > 0) {
+                $idProduit = $_GET['idProduit'];
+
+                (new Produit())->execute($idProduit);
+            } else {
+                throw new Exception('Aucun identifiant de produit envoyé');
+            }
         } else {
             throw new Exception("La page que vous recherchez n'existe pas.");
         }

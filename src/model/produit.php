@@ -70,18 +70,19 @@ class ProduitRepository
         public function getProduitId(int $idProduit): Produit 
     {
         $statement = $this->connection->getConnection()->prepare(
-            "SELECT * FROM Produit WHERE produit.idProduit = $idProduit"
+            "SELECT * FROM Produit WHERE idProduit = $idProduit"
         );
         $statement->execute();
+        $statement = $statement->fetch();
 
         $produit = new produit;
-        $produit->id = $row['idProduit'];
-        $produit->nom = $row['nom'];
-        $produit->description = $row['description'];
-        $produit->photo = $row['photo'];
-        $produit->dateAjout = $row['dateAjout'];
-        $produit->visibile = $row['visible'];
-        $produit->categorie = $row['idCategorie'];
+        $produit->id = $statement['idProduit'];
+        $produit->nom = $statement['nom'];
+        $produit->description = $statement['description'];
+        $produit->photo = $statement['photo'];
+        $produit->dateAjout = $statement['dateAjout'];
+        $produit->visibile = $statement['visible'];
+        $produit->categorie = $statement['idCategorie'];
 
         return $produit;
     }
