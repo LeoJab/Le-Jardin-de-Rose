@@ -24,6 +24,19 @@ class Produits
 
         require('templates/nos_creations.php');
     }
+
+    public function adminExecute()
+    {
+        $categorieRepository = new CategorieRepository;
+        $categorieRepository->connection = new DatabaseConnection;
+        $categories = $categorieRepository->getCategories();
+
+        $produitRepository = new ProduitRepository;
+        $produitRepository->connection = new DatabaseConnection;
+        $produits = $produitRepository->getProduits();
+
+        require('templates/admin/produit.php');
+    }
 }
 
 ?>
